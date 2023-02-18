@@ -4,9 +4,6 @@ WORKDIR /app/api_yamdb/
 
 COPY api_yamdb/requirements.txt /app
 
-RUN addgroup --system app && \
-    adduser --system --ingroup app app
-
 RUN pip install -r /app/requirements.txt --no-cache-dir
 
 COPY ../ /app
