@@ -14,4 +14,7 @@ ENV PYTHONUNBUFFERED=1 \
 
 RUN python manage.py collectstatic --no-input  
 
+RUN addgroup --system app && \
+    adduser --system --ingroup app app
+
 CMD ["gunicorn", "api_yamdb.wsgi:application", "--bind", "0:8000" ]
