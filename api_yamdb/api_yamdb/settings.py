@@ -1,17 +1,17 @@
 import os
 from datetime import timedelta
 from dotenv import load_dotenv
-
+from core.views import get_key
 load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv(
-    'DJANGO_SECRET_KEY',
-    default='p&l%385148kslhtyn^^^a1)ilz)4zqj^^q&agdol^%)zgl9(vs'
-)
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
+if not SECRET_KEY:
+    SECRET_KEY = get_key(50)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=0))
